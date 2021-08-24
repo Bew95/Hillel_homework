@@ -35,7 +35,7 @@ print(new_list)
 my_str = 'Hello Hillel, my name is Ivan!'
 new_list = []
 for letter in set(my_str):
-    if letter not in new_list:
+    if my_str.count(letter) == 1:
         new_list.append(letter)
 print(new_list)
 
@@ -44,8 +44,8 @@ my_str1 = 'saccdcnjnlclakscnlkd'
 my_str2 = 'sanconlaxklsamxlkvml'
 set1_ = set(my_str1)
 set2_ = set(my_str2)
-new_list = [set1_.intersection(set2_)]
-print(new_list)
+new_list = list(set1_.intersection(set2_))
+print(new_list, type(new_list))
 
 #########################################################
 new_str1 = 'ak,nccfffsc'
@@ -81,12 +81,17 @@ for person in persons:
         print(person['name'])
 
 name = []
+max_len = 0
 for person in persons:
-    name.append(person['name'])
-max_len_name = max(name)
-print(max_len_name)
+    if len(person['name']) > max_len:
+        max_len = len(person['name'])
 
-average_age = sum(age) // len(age)
+for person in persons:
+    if len(person['name']) == max_len:
+        name = person['name']
+
+print(name)
+average_age = sum(age) / len(age)
 print(average_age)
 
 #########################################################
@@ -110,14 +115,14 @@ for i in my_dict_1.items():
         new_dict[i[0]] = i[1]
 print(new_dict)
 new_dict2 = {}
-for item in my_dict_1.items():
-    if item[0] not in my_dict_2:
-        new_dict2[item[0]] = item[1]
+for key, value in my_dict_1.items():
+    if key not in my_dict_2:
+        new_dict2[key] = value
     else:
-        new_dict2[item[0]] = [item[1], my_dict_2[item[0]]]
-for item in my_dict_2.items():
-    if item[0] not in my_dict_1:
-        new_dict2[item[0]] = item[1]
+        new_dict2[key] = [value, my_dict_2[key]]
+for key, value in my_dict_2.items():
+    if key not in my_dict_1:
+        new_dict2[key] = value
 print(new_dict2)
 
 
